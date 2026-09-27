@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Living Career Upgrade Roadmap v4: one-product Backend + System Design + AI Engineering path, 32 weeks to a job-ready RAG system, then agents.">
+<title>Career Upgrade Roadmap v4 — Backend + System Design + AI Engineering</title>
+<style>
+:root{
+ --bg:#08111f;--panel:#0f1b2d;--panel2:#14243a;--panel3:#0b1627;--text:#e8eef8;
+ --muted:#9fb0c8;--line:#263853;--cyan:#67e8f9;--violet:#a78bfa;--green:#4ade80;
+ --amber:#fbbf24;--red:#fb7185;--shadow:0 15px 40px rgba(0,0,0,.28)
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:linear-gradient(180deg,#060d18,#08111f 35%,#0a1424);color:var(--text);
+font:15px/1.65 Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+a{color:var(--cyan)} a:hover{text-decoration:none}
+.wrap{max-width:1240px;margin:auto;padding:22px}
+header{border-bottom:1px solid var(--line);background:
+radial-gradient(circle at 75% 0,rgba(103,232,249,.12),transparent 30%),
+radial-gradient(circle at 20% 0,rgba(167,139,250,.13),transparent 32%)}
+.hero{padding:48px 0 35px}.eyebrow{display:inline-block;border:1px solid #2b4963;background:#0c1b2d;
+color:var(--cyan);padding:6px 11px;border-radius:999px;font-size:12px;font-weight:800;letter-spacing:.06em}
+h1{font-size:clamp(34px,6vw,64px);line-height:1.03;margin:15px 0}
+h2{font-size:29px;margin:48px 0 15px}h3{font-size:20px;margin:10px 0}
+.lead{max-width:920px;color:var(--muted);font-size:18px}
+.notice,.callout{border:1px solid var(--line);border-left:4px solid var(--cyan);background:linear-gradient(135deg,#102238,#0e192c);
+padding:17px 19px;border-radius:12px;margin:18px 0}
+.callout.green{border-left-color:var(--green)}.callout.amber{border-left-color:var(--amber)}.callout.red{border-left-color:var(--red)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:15px}
+.card{background:rgba(15,27,45,.92);border:1px solid var(--line);border-radius:14px;padding:19px;box-shadow:var(--shadow)}
+.kpi{font-size:30px;font-weight:850}.muted{color:var(--muted)}
+.badge{font-size:11px;padding:3px 7px;border-radius:5px;background:#12263b;color:var(--cyan);border:1px solid #23445d}
+.badge.green{color:var(--green);border-color:#14532d}.badge.amber{color:var(--amber);border-color:#78350f}
+details{background:rgba(15,27,45,.9);border:1px solid var(--line);border-radius:12px;margin:9px 0;overflow:hidden}
+summary{cursor:pointer;padding:15px 17px;font-weight:800;background:#111f33;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary:before{content:"＋";color:var(--cyan);display:inline-block;width:25px}
+details[open] summary:before{content:"−"}
+.detail{padding:16px 19px;border-top:1px solid var(--line)}
+.detail h4{margin:16px 0 6px;color:var(--cyan)}ul{margin-top:7px;padding-left:22px}
+li{margin:5px 0}code{background:#07101c;border:1px solid #1d2e45;border-radius:5px;padding:1px 5px;color:#bae6fd}
+table{width:100%;border-collapse:collapse;background:#0d192b;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+th,td{padding:11px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{background:#13243b;color:var(--cyan)}
+.week{border-left:3px solid var(--violet)}.week .whead{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.week .wn{font-weight:900;color:var(--violet);font-size:13px}.week.gate{border-left-color:var(--amber)}
+.project{border-left:3px solid var(--green);background:#0c1d1b}
+.check{list-style:none;padding-left:0}.check li{margin:7px 0}.check input{accent-color:var(--green);margin-right:9px;transform:scale(1.08)}
+pre{overflow:auto;background:#060c15;border:1px solid var(--line);padding:14px;border-radius:9px}
+.toc{position:sticky;top:0;z-index:5;background:rgba(6,13,24,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.toc .wrap{display:flex;gap:10px;overflow:auto;white-space:nowrap;padding-top:10px;padding-bottom:10px}
+.toc a{font-size:13px;color:var(--muted);padding:6px 9px;border-radius:7px}.toc a:hover{background:#122239;color:var(--text)}
+.progress{height:10px;background:#0a1422;border:1px solid var(--line);border-radius:99px;overflow:hidden}.bar{height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--violet));transition:.2s}
+.small{font-size:12px;color:var(--muted)}
+footer{border-top:1px solid var(--line);margin-top:55px;padding:30px 0;color:var(--muted)}
+@media(max-width:650px){.wrap{padding:15px}.hero{padding:32px 0}h2{font-size:25px}.lead{font-size:16px}table{font-size:13px}}
+</style>
+</head>
+<body>
+<header id="top"><div class="wrap hero">
+<span class="eyebrow">CAREER UPGRADE • VERSION 4.0 • LIVING ROADMAP</span>
+<h1>Backend + System Design + AI Engineering + Career Execution</h1>
+<p class="lead">One evolving product for an experienced full-stack/backend developer. Build a multi-tenant document assistant in a single repo, reach a defendable production RAG system by <strong>Week 24</strong>, then add agents. Target the next role around <strong>30+ LPA</strong> when that system is real. Treat <strong>1 Cr+</strong> as a later staff path, not the prize for finishing the calendar.</p>
+<div class="notice"><strong>Scope locked:</strong> This is <strong>not an ML Engineer roadmap</strong>. AI here means practical AI engineering: pre-trained models, LLM APIs, document ingestion, RAG, agents, tools, evaluation, security, observability and production architecture. <a href="https://roadmap.sh/ai-engineer" target="_blank">Reference: roadmap.sh AI Engineer</a>.</div>
+<div class="callout amber"><strong>Salary realism:</strong> 30+ LPA is a realistic target in about 6–9 months if you already have several years of production backend work, can whiteboard a scalable service, and can defend one deployed AI system (retrieval quality, cost, failure, security). Product companies and AI startups pay this band; many services roles do not. 1 Cr+ requires staff scope: ownership, technical leadership, and business impact over more years. The roadmap builds the technical base. It does not print a compensation number.</div>
+</div></header>
+
+<nav class="toc"><div class="wrap">
+<a href="#rules">Rules</a><a href="#v4delta">Added / not added</a><a href="#learn">How to learn</a><a href="#stack">Final Stack</a><a href="#tech">Tech Details</a><a href="#foundations">Foundations</a><a href="#career">Career Track</a><a href="#weeks">32 Weeks</a><a href="#projects">One Product</a><a href="#interview">Interview</a><a href="#optional">After Week 32</a><a href="#gaps">Gap Check</a><a href="#refs">References</a>
+</div></nav>
+
+<main class="wrap">
+
+<section id="rules">
+<h2>0. Rules — Follow These Strictly</h2>
+<div class="grid">
+<div class="card"><h3>Rule 1 — Don't restart</h3><p>Your Laravel/PHP, SQL, Linux and AWS experience is the foundation. Python is the language new AI work will hire you in. Laravel stays on the resume as proof you have operated real products.</p></div>
+<div class="card"><h3>Rule 2 — One repo</h3><p>Every week extends the same multi-tenant document assistant. Interviewers grill one system for 45 minutes. Seven shallow apps are weaker than one product with tenancy, failure, cost, and trade-offs.</p></div>
+<div class="card"><h3>Rule 3 — Learn by exit criteria</h3><p>A topic is not complete until you can explain it, implement it, debug it and discuss its production trade-offs.</p></div>
+<div class="card"><h3>Rule 4 — Apply at Week 24</h3><p>Start interviews when the RAG system is explainable. Agents, Kafka, and Kubernetes come after that gate. Do not treat Week 32 as the day you are allowed to apply.</p></div>
+</div>
+<div class="callout green"><strong>Recommended study load:</strong> about 5 hours/day. Use roughly 2h learning + 2h building + 30m review + 30m interview/system-design practice. If a weekly deliverable is unfinished, cut new theory. If your production experience is under about 3 years, stretch Weeks 1–2 into four weeks. If it is 4+ years, keep the compressed Python start.</div>
+</section>
+
+<section id="v4changes">
+<h2>V4 — What Changed From V3</h2>
+<div class="grid">
+<div class="card"><h3>32 weeks, then apply</h3><p>The job-ready core ends at Week 24. Weeks 25–32 add agents on the same product. Kafka and Kubernetes sit after you are already interviewing.</p></div>
+<div class="card"><h3>One product</h3><p>A multi-tenant document assistant accumulates auth, workers, deploy, ingestion, RAG, evals, and agents. Same repository every week.</p></div>
+<div class="card"><h3>Evals from the first LLM week</h3><p>Week 8 ships a streaming endpoint plus a 20-question eval file. The set grows to 100 questions with RAG. Quality is measured the week the feature exists.</p></div>
+<div class="card"><h3>Market gaps filled</h3><p>Real document parsing, LangGraph after a raw tool loop, one MCP server, traces, and a small LoRA/PEFT comparison that stays a note, not a research track.</p></div>
+</div>
+<div class="callout green"><strong>V4 principle:</strong> Learn fewer technologies deeply, connect them through one production-style product, and prove every major skill through explanation, implementation, debugging and trade-off discussion.</div>
+</section>
+
+<section id="v4delta">
+<h2>What V4 Added — and What It Did Not Add</h2>
+<p class="muted">V3 stays the previous version. This list is the difference.</p>
+<div class="grid">
+<div class="card"><h3>Added or improved</h3><ul>
+<li>32 weeks instead of 40. Apply at Week 24, not after the last week.</li>
+<li>One repository and one product, instead of seven separate apps.</li>
+<li>Python compressed to Weeks 1–2 when you already ship backend code.</li>
+<li>A 5-step weekly learning loop: read, build, break, write a trade-off, explain aloud.</li>
+<li>Evals in Week 8 with the first LLM endpoint, then a 100-question suite by Week 22.</li>
+<li>Document parsing: PDFs, tables, metadata, and bad files.</li>
+<li>Raw tool loop, then LangGraph, then one real MCP server.</li>
+<li>Traces and cost (Langfuse or the same fields in your logs).</li>
+<li>One small LoRA/PEFT run, written up only as a comparison with RAG.</li>
+<li>DSA heavier in Weeks 1–16, then maintenance.</li>
+<li>Salary realism: 30+ LPA is a hiring target; 1 Cr+ is later staff scope.</li>
+<li>Resume rule: Laravel stays as proof; Python leads the new system.</li>
+<li>SQS and ECS/Fargate as the first deploy. Kafka and Kubernetes move after you are interviewing.</li>
+</ul></div>
+<div class="card"><h3>Not added, on purpose</h3><ul>
+<li>An ML Engineer or model-research track.</li>
+<li>Months of training, custom model architecture, or a fine-tuning career.</li>
+<li>Graph RAG and multi-agent swarms.</li>
+<li>A second vector database as a requirement. pgvector stays first.</li>
+<li>Kubernetes administration inside the 32 weeks.</li>
+<li>Kafka inside the 32 weeks.</li>
+<li>A new stack that throws away Laravel/PHP experience.</li>
+<li>A promise that finishing the calendar produces 30 LPA or 1 Cr.</li>
+<li>Extra courses, tools, or frameworks added only because they are popular.</li>
+</ul></div>
+</div>
+<div class="callout"><strong>Kept from v3:</strong> AI Engineer scope, FastAPI, PostgreSQL, Redis, Docker, AWS, pgvector, workers, idempotency, API design, security, observability, exit criteria, and checkboxes.</div>
+</section>
+
+<section id="learn">
+<h2>How to Learn — One Loop Every Week</h2>
+<p class="muted">Do not collect courses. Official docs plus a broken-and-fixed implementation beat another playlist.</p>
+<div class="grid">
+<div class="card"><h3>1. Read narrow</h3><p>Read the official doc for one topic only. The reference library on this page is the source list.</p></div>
+<div class="card"><h3>2. Build in the repo</h3><p>Implement it inside the document assistant without following a full tutorial.</p></div>
+<div class="card"><h3>3. Break it</h3><p>Cause a timeout, a bad PDF chunk, a duplicate job, or a prompt injection. Then fix it.</p></div>
+<div class="card"><h3>4. Write one page</h3><p>Add a trade-off note to the README: what you chose, what you rejected, and what failed.</p></div>
+<div class="card"><h3>5. Say it aloud</h3><p>Explain the week in five minutes with no notes. If you cannot, the week is not done.</p></div>
+</div>
+<div class="callout"><strong>Use the current job when it is safe.</strong> A production story from work — an incident, a slow query, a queue, a tenant bug — is stronger interview evidence than a side project that only you have run.</div>
+</section>
+
+<section id="stack">
+<h2>1. Final Career Stack</h2>
+<div class="card">
+<table><tr><th>Layer</th><th>Primary</th><th>Depth</th></tr>
+<tr><td>Languages</td><td>Python for new work; existing PHP/Laravel + JavaScript as proof</td><td>Python professional; keep Laravel explainable</td></tr>
+<tr><td>Backend</td><td>FastAPI, Pydantic, SQLAlchemy</td><td>Production API engineering</td></tr>
+<tr><td>API Design</td><td>REST, HTTP, OpenAPI, versioning, idempotency, pagination, contracts</td><td>Deep</td></tr>
+<tr><td>Backend Foundations</td><td>OS, processes/threads, concurrency, I/O, memory, networking</td><td>Strong concepts + practical debugging</td></tr>
+<tr><td>Data</td><td>PostgreSQL, Redis</td><td>Deep</td></tr>
+<tr><td>Async / jobs</td><td>Queues and SQS first; Kafka only if the target role needs it</td><td>Workers deep; Kafka optional after Week 32</td></tr>
+<tr><td>Architecture</td><td>System design, modular monolith, failure and cost</td><td>Deep, practiced on this one product</td></tr>
+<tr><td>Cloud</td><td>AWS: IAM, EC2 or ECS/Fargate, S3, RDS, SQS, CloudWatch</td><td>Production-oriented. EKS is optional later</td></tr>
+<tr><td>Containers</td><td>Docker, then Kubernetes only after you can deploy without it</td><td>Docker deep; K8s practical and optional</td></tr>
+<tr><td>Delivery</td><td>Git, CI/CD, testing, observability</td><td>Production</td></tr>
+<tr><td>AI</td><td>LLMs, APIs, document parsing, embeddings, pgvector, RAG, tools, LangGraph, one MCP server</td><td>Deep application engineering</td></tr>
+<tr><td>AI production</td><td>Evaluation from the first LLM week, security, traces, cost/latency, model routing</td><td>Deep enough to own production systems</td></tr>
+<tr><td>Fine-tuning</td><td>One small LoRA/PEFT run compared with RAG and prompting</td><td>Conceptual plus one experiment. Not a training career</td></tr>
+</table>
+</div>
+</section>
+
+<section id="foundations">
+<h2>2. Backend Foundations</h2>
+<p class="muted">These are engineering fundamentals, not technologies to collect. They explain what your backend is actually doing underneath the frameworks. Fold them into the weeks below. Do not open a second curriculum.</p>
+<details><summary>Computer Science + Operating Systems Fundamentals</summary><div class="detail"><h4>Learn</h4><ul><li>CPU, memory, storage and I/O basics.</li><li>Processes vs threads and context switching.</li><li>Blocking operations, file descriptors and sockets.</li><li>Virtual memory and memory-management concepts.</li><li>Signals, process lifecycle and graceful shutdown.</li><li>Concurrency vs parallelism.</li><li>Race conditions, locks and shared state.</li><li>Python garbage-collection and memory concepts.</li></ul><h4>Exit criteria</h4><p>Given a slow or stuck API, explain whether the bottleneck is CPU, memory, disk, network, database or external I/O and show how you would investigate it.</p></div></details>
+<details><summary>API Design — Explicit Career Skill</summary><div class="detail"><h4>Learn in order</h4><ul><li>HTTP methods, status codes, headers and content negotiation.</li><li>Resource modeling and REST conventions.</li><li>Request/response schemas and consistent error formats.</li><li>Pagination, filtering and sorting.</li><li>API versioning and backward compatibility.</li><li>Idempotency keys and safe retries.</li><li>Rate limiting and quotas.</li><li>Authentication vs authorization.</li><li>OpenAPI contracts and documentation.</li><li>Webhooks, callback security and signature verification.</li><li>API gateway/reverse proxy concepts.</li></ul><h4>Exit project</h4><p>The document assistant's versioned API: idempotency, pagination, validation, standard errors, authentication and OpenAPI documentation.</p></div></details>
+<details><summary>Background Workers — Bridge to Distributed Systems</summary><div class="detail"><h4>Learn</h4><ul><li>Why work should leave the request/response path.</li><li>Producer → queue → worker architecture.</li><li>Job states, retries and exponential backoff.</li><li>Dead-letter queues and poison messages.</li><li>Idempotent workers and duplicate delivery.</li><li>Scheduled and delayed jobs.</li><li>Redis-backed workers and SQS.</li><li>When a simple background task is enough vs a real queue.</li><li>Worker concurrency and graceful shutdown.</li></ul><h4>Exit project</h4><p>The document-ingestion worker: retries, idempotency, failure handling and a dead-letter path.</p></div></details>
+<details><summary>Performance Engineering</summary><div class="detail"><h4>Learn</h4><ul><li>Latency, throughput, concurrency and saturation.</li><li>p50, p95 and p99 latency.</li><li>CPU and memory profiling concepts.</li><li>Database query profiling and EXPLAIN ANALYZE.</li><li>Connection pools and pool exhaustion.</li><li>Cache hit/miss behavior and cache stampede.</li><li>Load testing and benchmark design.</li><li>Async I/O vs CPU-bound work.</li><li>Finding bottlenecks before optimizing.</li><li>Performance regression testing.</li></ul><h4>Exit project</h4><p>Load-test the document API, identify its top bottleneck, optimize it, and document before/after latency and throughput. Heavier performance work waits until after you are interviewing.</p></div></details>
+<details><summary>ML / AI Fundamentals — Small Foundation, Not an ML Career</summary><div class="detail"><h4>Learn</h4><ul><li>Supervised vs unsupervised learning.</li><li>Classification vs regression.</li><li>Training, validation and test data.</li><li>Features, labels and inference.</li><li>Overfitting and underfitting.</li><li>Loss functions and gradient descent conceptually.</li><li>Precision, recall, F1 and confusion matrix.</li><li>Neural-network and transformer concepts at a high level.</li><li>Training vs inference and inference cost/latency.</li><li>Fine-tuning vs prompting vs RAG, including what LoRA/PEFT changes and what it does not.</li></ul><h4>Scope rule</h4><p>Understand enough to make engineering decisions and communicate with ML specialists. Week 30 is one small PEFT run so you can compare it with RAG. Do not spend months becoming a model-training researcher.</p></div></details>
+</section>
+
+<section id="tech">
+<h2>3. Every Technology — Detailed Dropdown Curriculum</h2>
+<p class="muted">Open each item when its week arrives. Checkboxes are saved in your browser using localStorage under a v4 key.</p>
+
+<details><summary>Python — Professional Backend Level</summary><div class="detail">
+<h4>Must learn</h4><ul>
+<li>Core syntax: variables, types, operators, conditionals, loops, <code>range</code>, <code>continue</code>, <code>break</code>, match.</li>
+<li>Data structures: list, tuple, set, dict; mutability, copying, unpacking, comprehensions.</li>
+<li>Functions: positional/keyword-only args, *args/**kwargs, scope, closures, annotations.</li>
+<li>OOP: classes, composition, inheritance, protocols/duck typing, dunder methods.</li>
+<li>Modules/packages/import system; project layout for the one repo.</li>
+<li>Exceptions and custom exceptions; context managers.</li>
+<li>Iterators/generators; decorators.</li>
+<li>Type hints, generics, Protocol, TypedDict, dataclasses.</li>
+<li>Virtual environments, <code>pyproject.toml</code>, dependency locking and packaging.</li>
+<li>File/JSON handling, pathlib, datetime, logging, environment configuration.</li>
+<li>Testing with pytest, fixtures, mocks and integration tests.</li>
+<li>Asyncio, async/await, tasks, concurrency vs parallelism, blocking I/O.</li>
+</ul>
+<h4>Pace</h4><p>Weeks 1–2 cover this for an experienced backend developer. Map each idea to something you already do in PHP: requests, validation, queues, tests. Skip tutorial clones.</p>
+<h4>Do not overdo yet</h4><ul><li>C-extension development, metaprogramming and advanced internals are optional until a real project needs them.</li></ul>
+<p><strong>Reference:</strong> <a href="https://docs.python.org/3/tutorial/" target="_blank">Python official tutorial</a>.</p>
+</div></details>
+
+<details><summary>FastAPI + Pydantic — Production API Engineering</summary><div class="detail">
+<h4>Learn in order</h4><ul>
+<li>Application structure, routers, path/query/body parameters and response models.</li>
+<li>Pydantic validation, nested models, serialization, settings/config.</li>
+<li>Dependency injection and reusable dependencies.</li>
+<li>Middleware, lifecycle/startup/shutdown and exception handlers.</li>
+<li>OpenAPI, Swagger/ReDoc and API documentation.</li>
+<li>Authentication/authorization: JWT, OAuth2 concepts, API keys, RBAC, tenant checks.</li>
+<li>Async database access and connection pooling.</li>
+<li>SQLAlchemy models, sessions, transactions and migrations with Alembic.</li>
+<li>Pagination, filtering, sorting, idempotency and API versioning.</li>
+<li>Background tasks/queues, streaming responses.</li>
+<li>Testing endpoints, integration tests and contract thinking.</li>
+</ul>
+<h4>Exit criteria</h4><p>The document assistant API runs with PostgreSQL, auth, migrations, Redis, tests, logging and Docker. The LLM route streams and records token usage.</p>
+<p><strong>Reference:</strong> <a href="https://fastapi.tiangolo.com/tutorial/" target="_blank">FastAPI official tutorial</a> and <a href="https://fastapi.tiangolo.com/advanced/" target="_blank">FastAPI advanced guide</a>.</p>
+</div></details>
+
+<details><summary>PostgreSQL + SQL — Database Engineering</summary><div class="detail">
+<h4>Learn</h4><ul>
+<li>Relational modeling, normalization/denormalization and constraints.</li>
+<li>SELECT/JOIN/GROUP BY/HAVING/subqueries/CTEs/window functions.</li>
+<li>Indexes: B-tree, composite, partial, expression; index selectivity.</li>
+<li>EXPLAIN/EXPLAIN ANALYZE and query plans.</li>
+<li>Transactions, ACID, isolation levels, locks and deadlocks.</li>
+<li>MVCC concepts, connection pooling and long-running transactions.</li>
+<li>Replication, read replicas, backups/restore and partitioning concepts.</li>
+<li>Schema migrations and backward-compatible database changes.</li>
+<li>Row-level tenant isolation for organizations and documents.</li>
+<li>When PostgreSQL is enough vs when NoSQL/search systems are justified.</li>
+</ul>
+<h4>Exit project</h4><p>Schema for the assistant: organizations, users, roles, documents, chunks, audit logs, usage events. Benchmark the hot queries.</p>
+<p><strong>Reference:</strong> <a href="https://www.postgresql.org/docs/" target="_blank">PostgreSQL official documentation</a>.</p>
+</div></details>
+
+<details><summary>Redis — Caching + Fast State</summary><div class="detail">
+<h4>Learn</h4><ul><li>Strings, hashes, lists, sets, sorted sets and streams.</li><li>TTL, eviction, cache-aside and write-through concepts.</li><li>Distributed locks, rate limiting, counters and idempotency keys.</li><li>Session storage, temporary state and job queues.</li><li>Cache stampede, stale data, invalidation and consistency trade-offs.</li><li>Persistence, replication, high availability and cluster awareness.</li></ul>
+<h4>Exit project</h4><p>Per-tenant rate limits and a cache in front of expensive reads. Measure before/after latency on the same API.</p>
+<p><strong>Reference:</strong> <a href="https://redis.io/docs/latest/" target="_blank">Redis documentation</a>.</p>
+</div></details>
+
+<details><summary>DSA — Front-load, Then Maintain</summary><div class="detail">
+<h4>Learn</h4><ul><li>Big-O time/space complexity.</li><li>Arrays, strings, hash maps/sets.</li><li>Two pointers, sliding window, prefix sums, binary search.</li><li>Stacks, queues, linked lists.</li><li>Trees, BST, heaps/priority queues, tries.</li><li>Graphs: BFS, DFS, shortest path concepts, topological sort.</li><li>Recursion/backtracking.</li><li>Greedy and basic dynamic programming.</li></ul>
+<h4>Schedule</h4><ul>
+<li>Weeks 1–16: about 4 pattern problems per week. Patterns, not a random grind.</li>
+<li>Weeks 17–24: 2 problems per week. Spend the saved time on system design and the RAG eval set.</li>
+<li>Week 25 onward: 1–2 maintenance problems per week. Mock system-design and AI-design interviews take the rest of that slot.</li>
+</ul>
+<p>Product companies still test DSA. AI startups weigh a production RAG/agent design more heavily. This schedule serves both without letting LeetCode eat the portfolio.</p>
+</div></details>
+
+<details><summary>Linux + Networking — Backend Foundations</summary><div class="detail">
+<h4>Linux</h4><ul><li>Processes, threads, signals, permissions, users/groups.</li><li>systemd, logs, cron, environment variables, filesystems.</li><li>CPU/memory/disk/process troubleshooting.</li><li>SSH, curl, grep, sed, awk, ps, top/htop, netstat/ss.</li></ul>
+<h4>Networking</h4><ul><li>OSI/TCP-IP model, IP, ports, DNS.</li><li>TCP handshake, connection lifecycle, UDP basics.</li><li>HTTP/HTTPS, TLS basics, HTTP/1.1 vs HTTP/2 vs HTTP/3 awareness.</li><li>Reverse proxy, load balancer, CDN.</li><li>Latency, throughput, timeouts and connection pooling.</li></ul>
+<h4>Exit project</h4><p>Run the API behind Nginx, inspect one failed request end to end, configure TLS, and write a one-page troubleshooting runbook in the repo.</p>
+</div></details>
+
+<details><summary>System Design — Core Career Pillar</summary><div class="detail">
+<h4>Fundamentals</h4><ul><li>Requirements: functional/non-functional, constraints, assumptions.</li><li>Capacity estimation: QPS, storage, bandwidth, latency.</li><li>Availability vs consistency; CAP and practical trade-offs.</li><li>Vertical/horizontal scaling and stateless services.</li><li>Load balancers, reverse proxies and CDNs.</li><li>Caching, cache invalidation and distributed caching.</li><li>Databases: indexes, replication, partitioning, sharding.</li><li>Queues, pub/sub, event-driven systems and backpressure.</li><li>Retries, timeouts, circuit breakers, idempotency and deduplication.</li><li>Distributed locks, leader election and failure handling concepts.</li><li>Observability, SLOs/SLIs, alerting and incident response.</li><li>Security architecture and disaster recovery.</li><li>AI cost as a design constraint: tokens, context, model routing, queueing slow work.</li></ul>
+<h4>Practice on paper, implement on the product</h4><p>During Weeks 9–16 write two designs per week: URL shortener, notification system, file storage, feed, search, and the document assistant itself. From Week 17, one design per week is the AI system you are actually building: ingestion, retrieval, eval gates, and failure.</p>
+<p><strong>Reference:</strong> <a href="https://roadmap.sh/system-design" target="_blank">roadmap.sh System Design</a>.</p>
+</div></details>
+
+<details><summary>Docker — Production Containers</summary><div class="detail">
+<h4>Learn</h4><ul><li>Images vs containers; Dockerfile instructions.</li><li>Layers, caching, multi-stage builds and small images.</li><li>Networks, volumes and container lifecycle.</li><li>Environment/configuration and secret handling.</li><li>Docker Compose for API + DB + Redis + worker.</li><li>Health checks, resource limits and logs.</li><li>Container security and non-root execution.</li><li>Image registry and deployment workflow.</li></ul>
+<h4>Exit project</h4><p>One Compose command starts the API, PostgreSQL, Redis and the ingestion worker.</p>
+<p><strong>Reference:</strong> <a href="https://docs.docker.com/get-started/" target="_blank">Docker official Get Started</a>.</p>
+</div></details>
+
+<details><summary>CI/CD + Git — Delivery Engineering</summary><div class="detail">
+<h4>Learn</h4><ul><li>Git internals enough to understand branches, merges, rebase and conflicts.</li><li>PR workflow, code review and commit hygiene.</li><li>CI pipeline: lint → test → build → security checks.</li><li>The eval file runs in CI from Week 8 onward, and fails the build on regression once the set is stable.</li><li>CD: staging → approval → production.</li><li>Secrets and environment separation.</li><li>Database migration safety and rollback strategy.</li><li>Blue/green, rolling and canary deployment concepts.</li></ul>
+<h4>Exit project</h4><p>Every pull request tests the API and builds a Docker image. Eval regression is a required check before you call the RAG system job-ready.</p>
+</div></details>
+
+<details><summary>AWS — Cloud + Architecture</summary><div class="detail">
+<h4>Core for the first deploy</h4><ul><li>IAM: users, roles, policies, least privilege.</li><li>ECS/Fargate or a small EC2 service. Security groups and networking basics.</li><li>S3 for original documents, lifecycle policies and secure access.</li><li>RDS/PostgreSQL, backups and high availability concepts.</li><li>SQS for the ingestion worker. SNS awareness.</li><li>CloudWatch logs, metrics, alarms and dashboards.</li><li>Secrets Manager or Parameter Store.</li><li>Cost awareness: compute, storage, network and AI inference.</li></ul>
+<h4>Awareness, not the Week 16 goal</h4><ul><li>Route 53, CloudFront and load balancing.</li><li>EKS. Learn Kubernetes after you have deployed without it, and only if target roles ask.</li></ul>
+<h4>Architecture framework</h4><p>Use AWS Well-Architected thinking: operational excellence, security, reliability, performance efficiency, cost optimization and sustainability.</p>
+<p><strong>References:</strong> <a href="https://docs.aws.amazon.com/wellarchitected/latest/framework/" target="_blank">AWS Well-Architected Framework</a> and <a href="https://docs.aws.amazon.com/wellarchitected/latest/userguide/waf.html" target="_blank">six-pillar overview</a>.</p>
+</div></details>
+
+<details><summary>Kubernetes — After You Can Deploy Without It</summary><div class="detail">
+<h4>Learn only in the optional extension</h4><ul><li>Cluster architecture, control plane and worker nodes.</li><li>Pods, Deployments, ReplicaSets.</li><li>Services and service discovery.</li><li>ConfigMaps and Secrets.</li><li>Ingress and networking.</li><li>Resource requests/limits and probes.</li><li>Horizontal scaling.</li><li>Rolling updates/rollback.</li><li>Namespaces, RBAC and basic security.</li><li>Persistent storage awareness.</li></ul>
+<h4>Do not become a Kubernetes administrator</h4><p>ECS/Fargate plus SQS is enough for many 30 LPA AI roles. Add Kubernetes when a target job description requires it.</p>
+<p><strong>Reference:</strong> <a href="https://kubernetes.io/docs/concepts/overview/" target="_blank">Kubernetes concepts</a>.</p>
+</div></details>
+
+<details><summary>Kafka — Optional, After the Apply Gate</summary><div class="detail">
+<h4>Learn if the role is a large distributed backend</h4><ul><li>Topics, partitions, producers, consumers and consumer groups.</li><li>Offsets, ordering and delivery semantics.</li><li>Replication and fault tolerance.</li><li>Retention and replay.</li><li>Partition-key design and hot partitions.</li><li>At-least-once vs exactly-once concepts.</li><li>Retries, dead-letter strategy and idempotent consumers.</li><li>Kafka vs SQS vs Redis streams.</li></ul>
+<h4>Default for this roadmap</h4><p>Ship the worker on Redis or SQS first. Build a Kafka pipeline only after Week 24, and only when interviews or the job ask for event logs at that scale.</p>
+</div></details>
+
+<details><summary>Testing + Observability</summary><div class="detail">
+<h4>Testing</h4><ul><li>Unit vs integration vs end-to-end tests.</li><li>Fixtures, mocks and test databases.</li><li>Contract/API testing.</li><li>Load and basic performance testing.</li><li>Regression testing, including prompt and retrieval regressions.</li></ul>
+<h4>Observability</h4><ul><li>Logs, metrics and traces.</li><li>Correlation/request IDs.</li><li>Latency/error/traffic/saturation signals.</li><li>SLO/SLI/SLA concepts.</li><li>Dashboards, alerts and incident debugging.</li><li>AI traces: prompt version, retrieved chunks, tool calls, tokens, cost. Langfuse or an equivalent structured trace is the concrete tool.</li></ul></div></details>
+
+<details><summary>Security — Application + Cloud + AI</summary><div class="detail">
+<h4>Application</h4><ul><li>OWASP Top 10 concepts, SQL injection, XSS, CSRF, SSRF.</li><li>Authentication vs authorization, RBAC and tenant isolation.</li><li>Password hashing, secrets, secure cookies/tokens.</li><li>Rate limiting, validation, file upload security.</li><li>Audit logs and secure error handling.</li></ul>
+<h4>AI-specific</h4><ul><li>Prompt injection and indirect prompt injection from retrieved documents.</li><li>Data/PII leakage.</li><li>Tool permission boundaries and allowlists.</li><li>Untrusted retrieved content.</li><li>Model output validation.</li><li>Data retention and deletion policies.</li><li>Abuse monitoring and quotas.</li></ul></div></details>
+
+<details><summary>LLM Engineering — AI Application Core</summary><div class="detail">
+<h4>Learn</h4><ul><li>Tokens, context windows, inference and model capabilities.</li><li>Model selection: quality, latency, cost, context and reliability.</li><li>Prompt structure, system/developer/user instructions. Context engineering: what is allowed into the window.</li><li>Structured outputs / JSON schemas.</li><li>Streaming.</li><li>Function/tool calling.</li><li>Conversation state and application memory.</li><li>Retries, fallbacks and provider abstraction.</li><li>Prompt/version management.</li><li>Token and cost estimation.</li></ul>
+<h4>Exit project</h4><p>Week 8: a streaming FastAPI assistant on the same product, with structured output, timeouts, auth, a usage log, and a 20-question eval file that runs in CI.</p>
+<p><strong>Reference:</strong> <a href="https://platform.openai.com/docs" target="_blank">OpenAI Platform Docs</a> and <a href="https://roadmap.sh/ai-engineer" target="_blank">roadmap.sh AI Engineer</a>.</p>
+</div></details>
+
+<details><summary>Document Parsing — The Hard Part of RAG</summary><div class="detail">
+<h4>Learn</h4><ul><li>Plain text vs PDF vs office documents vs HTML.</li><li>Extracting text, headings, tables and page numbers.</li><li>OCR awareness for scans, and when OCR quality makes retrieval useless.</li><li>Cleaning headers, footers, hyphenation and boilerplate.</li><li>Metadata: tenant, source, title, updated time, access list.</li><li>Failed files, encrypted files, and huge files that must not block the API.</li><li>Idempotent re-ingestion when a document is replaced.</li></ul>
+<h4>Exit project</h4><p>Week 17: the worker accepts real PDFs, stores the original in S3, and writes cleaned text plus metadata to PostgreSQL. Include at least one deliberately bad file and show how the pipeline records the failure.</p>
+</div></details>
+
+<details><summary>Embeddings + Vector Search + pgvector</summary><div class="detail">
+<h4>Learn</h4><ul><li>What embeddings represent; semantic similarity.</li><li>Cosine similarity/distance concepts.</li><li>Vector storage and indexing in PostgreSQL.</li><li>Metadata filtering, including tenant and permission filters.</li><li>Top-k retrieval.</li><li>Chunk size and overlap trade-offs, measured on your eval set.</li><li>Hybrid lexical + semantic search.</li><li>Reranking.</li><li>Retrieval evaluation.</li></ul>
+<h4>Preferred first implementation</h4><p>Use PostgreSQL + pgvector. Add another vector database only when this product's scale or filtering needs force the move.</p>
+</div></details>
+
+<details><summary>RAG — Retrieval-Augmented Generation</summary><div class="detail">
+<h4>Pipeline</h4><p>Ingest → parse → clean → chunk → metadata → embed → store → retrieve → rerank → construct context → generate → cite → evaluate.</p>
+<h4>Advanced topics inside Weeks 19–23</h4><ul><li>Hybrid retrieval.</li><li>Query rewriting and multi-query retrieval.</li><li>Metadata filtering.</li><li>Parent-child / hierarchical retrieval.</li><li>Reranking.</li><li>Document freshness and re-indexing.</li><li>Permission-aware retrieval for multiple tenants.</li></ul>
+<h4>Leave for later</h4><p>Graph RAG and multi-agent swarms are out of the first job jump. Mention them only if you can say why this product does not need them yet.</p>
+<h4>Exit project</h4><p>Document Q&amp;A that refuses unsupported answers, returns source references, and is scored by the eval set.</p>
+</div></details>
+
+<details><summary>AI Evaluation — Starts Week 8, Matures Week 22</summary><div class="detail">
+<h4>Learn</h4><ul><li>Create representative evaluation datasets.</li><li>Week 8: 20 questions for the streaming assistant. Behavior, format, and refusal cases.</li><li>Week 19 onward: grow the set as retrieval exists. Retrieval context precision/recall-style measurements.</li><li>Generation: relevance, groundedness/faithfulness and task correctness.</li><li>Week 22: 100 questions, slices by intent, regression checks in CI.</li><li>Human evaluation of a sample, not only automatic scores.</li><li>LLM-as-judge limitations and calibration.</li><li>Failure taxonomy and error analysis.</li><li>Offline evaluation before you widen access.</li><li>Online monitoring after deployment.</li></ul>
+<h4>Exit project</h4><p>A checked-in eval suite with expected behavior, measured retrieval and generation quality, and a note on which change helped and which change did not.</p>
+</div></details>
+
+<details><summary>LLM Observability + Cost + Reliability</summary><div class="detail">
+<h4>Track</h4><ul><li>Request ID, user/tenant, prompt/model version.</li><li>Input/output tokens, cost and latency.</li><li>Retrieval documents and scores.</li><li>Tool calls, errors and retries.</li><li>Model fallback frequency.</li><li>Cache hit rate.</li><li>Quality/evaluation score over time.</li></ul>
+<h4>Reliability patterns</h4><ul><li>Timeouts, retries with backoff.</li><li>Fallback model/provider.</li><li>Circuit breaker.</li><li>Queueing for expensive workloads so the web process stays short.</li><li>Rate limits and tenant quotas.</li><li>Prompt or semantic caching when repeat questions dominate cost.</li></ul>
+<h4>Tool</h4><p>Use Langfuse or the same fields in your own structured logs. The interview answer is the trace, not the vendor logo.</p>
+</div></details>
+
+<details><summary>AI Agents + LangGraph + MCP</summary><div class="detail">
+<h4>Order is mandatory</h4><ul><li>Week 25: a raw loop you can read. Observe → decide → tool call → result → next action. Two or three tools, strict schemas, timeouts.</li><li>Week 26: the same workflow in LangGraph, with state you can draw.</li><li>Week 27: allowlists, human approval for sensitive actions, quotas, audit logs.</li><li>Week 28: one MCP server that exposes a real tool, such as tenant-scoped document search.</li><li>Week 29: traces for every tool call and model step.</li></ul>
+<h4>Learn</h4><ul><li>Tool schemas and strict input validation.</li><li>Memory/state vs conversation history.</li><li>Single-agent workflows. Multi-agent swarms stay out of this roadmap.</li><li>Retries, timeouts and tool failure handling.</li><li>Human-in-the-loop.</li><li>Agent evaluation and trace analysis.</li><li>MCP: a small server your assistant actually calls, after you understand the tool boundary.</li></ul>
+<p><strong>References:</strong> <a href="https://modelcontextprotocol.io/" target="_blank">Model Context Protocol</a> and LangGraph's docs when you reach Week 26.</p>
+</div></details>
+
+<details><summary>Transformers / LoRA / PEFT — One Comparison, Not a Track</summary><div class="detail">
+<h4>Scope</h4><ul><li>Tokenizer → model → generation pipeline.</li><li>Model cards, context limits and hardware constraints.</li><li>Quantization and inference-cost awareness.</li><li>Week 30: one small LoRA/PEFT run on a narrow task, then a written comparison with prompting and with RAG on the same questions.</li></ul>
+<h4>What the note must answer</h4><ul><li>What data the adapter saw.</li><li>What improved, and what RAG still does better.</li><li>Training cost and inference cost versus an API call.</li><li>Why this product still uses RAG as the default.</li></ul>
+<p><strong>Reference:</strong> <a href="https://huggingface.co/docs/transformers/main/index" target="_blank">Hugging Face Transformers docs</a> and the PEFT docs for the single experiment.</p>
+</div></details>
+</section>
+
+<section id="career">
+<h2>4. Career Execution Track — Runs Every Week</h2>
+<p class="muted">Technical learning alone does not create a career upgrade. This track runs beside the repo from Week 1.</p>
+<div class="grid">
+<div class="card"><h3>GitHub proof</h3><ul><li>One public repository</li><li>Meaningful commits</li><li>Architecture README that grows each month</li><li>Setup/run instructions</li><li>Trade-off notes per milestone</li></ul></div>
+<div class="card"><h3>Interview practice</h3><ul><li>Weeks 1–16: ~4 DSA pattern problems/week</li><li>Weeks 9–16: 2 written system designs/week</li><li>Weeks 17–24: 2 DSA problems/week + 1 AI design/week</li><li>Week 25+: 1–2 DSA problems and mock interviews</li></ul></div>
+<div class="card"><h3>Resume evidence</h3><ul><li>Lead with shipped backend outcomes and this AI system</li><li>Keep Laravel as proof of production work</li><li>Python is the language of the new work</li><li>Impact and trade-offs, not a tool list</li><li>Update the resume every 4 weeks</li><li>List a skill only when you can defend it</li></ul></div>
+<div class="card"><h3>Communication</h3><ul><li>Five-minute project story</li><li>One incident or debugging story from work or this repo</li><li>Trade-offs in plain language</li><li>Short engineering notes in the README</li></ul></div>
+</div>
+<details><summary>Every 4 Weeks — Career Checkpoint</summary><div class="detail"><ul><li>Can I explain what I learned without notes?</li><li>Can I implement the core concept without blindly copying?</li><li>Can I debug a realistic failure?</li><li>Can I explain at least two design trade-offs?</li><li>Is the evidence in the one GitHub repo?</li><li>Can this skill honestly appear on my resume?</li><li>Can I explain the product in a 5-minute interview answer?</li></ul></div></details>
+<div class="callout amber"><strong>Week 24 apply gate:</strong> When retrieval, citations, tenant isolation, cost, and the 100-question eval set are explainable, start applications that week. A perfect agent is not a prerequisite. Waiting for Week 32 leaves offers on the table.</div>
+</section>
+
+<section id="weeks">
+<h2>5. 32-Week Roadmap — One Repo, Every Week</h2>
+<p class="muted">Product: a multi-tenant document assistant (support wiki, internal docs, or invoice Q&amp;A). Same repository from Week 1 through Week 32.</p>
+<div class="callout"><strong>Daily rhythm:</strong> 2h focused learning + 2h coding/building + 30m interview practice + 30m review. If the week's slice of the product is unfinished, reduce new theory.</div>
+<div class="callout green"><strong>DSA:</strong> ~4 pattern problems/week in Weeks 1–16, 2/week in Weeks 17–24, then 1–2/week. <strong>System design:</strong> two written designs/week in Weeks 9–16, then one design/week of the system you are shipping.</div>
+<div id="weekList"></div>
+</section>
+
+<section id="projects">
+<h2>6. One Product — Milestone Ladder</h2>
+<p class="muted">These are snapshots of the same assistant, not separate portfolio apps.</p>
+<div class="grid">
+<div class="card"><span class="badge">WEEKS 1–8</span><h3>Authenticated API + first LLM</h3><p>FastAPI, Postgres, migrations, tests, streaming assistant, usage log, and a 20-question eval file in CI.</p></div>
+<div class="card"><span class="badge">WEEKS 9–16</span><h3>Operable service</h3><p>Redis, ingestion worker, Docker Compose, CI image build, logs and metrics, AWS deploy with S3, RDS and SQS.</p></div>
+<div class="card"><span class="badge green">WEEK 24 GATE</span><h3>Production RAG — start applying</h3><p>PDF ingestion, pgvector, hybrid search, rerank, citations, tenant-safe retrieval, cost traces, and a 100-question eval suite.</p></div>
+<div class="card"><span class="badge">WEEKS 25–32</span><h3>Agents on the same product</h3><p>Raw tool loop, LangGraph, approvals, one MCP server, traces, and a short LoRA vs RAG note.</p></div>
+</div>
+</section>
+
+<section id="interview">
+<h2>7. Interview Readiness for the 30+ LPA Band</h2>
+<div class="grid">
+<div class="card"><h3>Python</h3><ul><li>Language fundamentals</li><li>OOP/design</li><li>asyncio/concurrency</li><li>testing/debugging</li><li>clean code</li></ul></div>
+<div class="card"><h3>Backend</h3><ul><li>REST/API design</li><li>SQL/indexes/transactions</li><li>Redis</li><li>workers and idempotency</li><li>auth/tenancy/security</li></ul></div>
+<div class="card"><h3>System Design</h3><ul><li>Requirements and estimation</li><li>architecture of this product</li><li>data/storage</li><li>scaling/failure</li><li>cost and trade-offs</li></ul></div>
+<div class="card"><h3>AI Engineering</h3><ul><li>LLM APIs and streaming</li><li>document parsing and RAG</li><li>evals with numbers</li><li>LangGraph, tools, MCP</li><li>security, traces, cost/latency</li></ul></div>
+</div>
+<div class="callout"><strong>Resume shape:</strong> First lines are outcomes from production Laravel/backend work and from this AI system. Python is how the new system is built. Laravel remains evidence that you have run real users, databases, and deploys. Never list a technology you cannot explain. Kafka and Kubernetes stay off the resume until the optional extension is real.</div>
+<div class="callout amber"><strong>What to skip before the first interviews:</strong> graph RAG, multi-agent swarms, a second vector database, cluster administration, and months of model training.</div>
+</section>
+
+<section id="optional">
+<h2>8. After You Are Interviewing — Optional Depth</h2>
+<p class="muted">Start this only when applications are already going out, or when a specific job description requires it.</p>
+<div class="grid">
+<div class="card"><h3>Kafka</h3><p>An event pipeline on the same product if the role is a large distributed backend. Compare it with the SQS worker you already shipped.</p></div>
+<div class="card"><h3>Kubernetes</h3><p>Deploy the API locally, then reason about probes, rollouts and limits. ECS/Fargate remains a valid production answer.</p></div>
+<div class="card"><h3>Heavier performance</h3><p>A second load test after RAG and agents exist. Document p95, queue lag, pool exhaustion and cost per successful answer.</p></div>
+</div>
+</section>
+
+<section id="gaps">
+<h2>9. V4 Cross-Check</h2>
+<div class="card">
+<table>
+<tr><th>Topic</th><th>Where it lives</th><th>Why it matters</th></tr>
+<tr><td>Compressed Python for experienced backend developers</td><td>Weeks 1–2</td><td>Saves the early calendar for APIs, data, and a real LLM feature.</td></tr>
+<tr><td>One evolving repository</td><td>All 32 weeks</td><td>Senior interviews go deep on one system.</td></tr>
+<tr><td>Starter evals with the first LLM endpoint</td><td>Week 8</td><td>Quality measurement begins when the feature begins.</td></tr>
+<tr><td>Document parsing, including bad PDFs</td><td>Week 17</td><td>Production RAG fails on ingestion more often than on prompts.</td></tr>
+<tr><td>100-question eval suite and apply gate</td><td>Weeks 22–24</td><td>The market filter is a number, a failure analysis, and a system you can defend.</td></tr>
+<tr><td>Raw tool loop, then LangGraph</td><td>Weeks 25–26</td><td>Framework use after the loop is visible.</td></tr>
+<tr><td>One MCP server</td><td>Week 28</td><td>A real tool boundary, not a glossary entry.</td></tr>
+<tr><td>Traces and cost</td><td>Weeks 23 and 29</td><td>Latency, tokens, retrieval hits, and tool failures.</td></tr>
+<tr><td>Small LoRA/PEFT comparison</td><td>Week 30</td><td>Answers the fine-tune vs RAG question without becoming a training career.</td></tr>
+<tr><td>DSA front-load, then maintenance</td><td>Career track</td><td>Product companies still test patterns. AI interviews need the design time back.</td></tr>
+<tr><td>Laravel kept as proof; Python leads new work</td><td>Resume rule</td><td>Experience is an asset. The new stack is what AI roles hire.</td></tr>
+<tr><td>Kafka and Kubernetes</td><td>After Week 32</td><td>Useful for some senior roles. Not required to start applying.</td></tr>
+<tr><td>ML Engineer curriculum</td><td>Intentionally excluded</td><td>Not the target path. Week 30 is the only training experiment.</td></tr>
+</table>
+</div>
+</section>
+
+<section id="refs">
+<h2>10. Reference Library</h2>
+<div class="grid">
+<div class="card"><h3>Roadmaps</h3><ul>
+<li><a href="https://roadmap.sh/ai-engineer" target="_blank">roadmap.sh — AI Engineer</a></li>
+<li><a href="https://roadmap.sh/system-design" target="_blank">roadmap.sh — System Design</a></li>
+<li><a href="https://roadmap.sh/ai-engineer/projects" target="_blank">roadmap.sh — AI Engineer Projects</a></li>
+</ul></div>
+<div class="card"><h3>Python / Backend</h3><ul>
+<li><a href="https://docs.python.org/3/" target="_blank">Python Documentation</a></li>
+<li><a href="https://fastapi.tiangolo.com/tutorial/" target="_blank">FastAPI Tutorial</a></li>
+<li><a href="https://www.postgresql.org/docs/" target="_blank">PostgreSQL Docs</a></li>
+<li><a href="https://redis.io/docs/latest/" target="_blank">Redis Docs</a></li>
+</ul></div>
+<div class="card"><h3>Infrastructure</h3><ul>
+<li><a href="https://docs.docker.com/get-started/" target="_blank">Docker Get Started</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/overview/" target="_blank">Kubernetes Concepts</a></li>
+<li><a href="https://docs.aws.amazon.com/wellarchitected/latest/framework/" target="_blank">AWS Well-Architected</a></li>
+</ul></div>
+<div class="card"><h3>AI</h3><ul>
+<li><a href="https://huggingface.co/docs/transformers/main/index" target="_blank">Hugging Face Transformers</a></li>
+<li><a href="https://huggingface.co/docs/peft/index" target="_blank">Hugging Face PEFT</a></li>
+<li><a href="https://platform.openai.com/docs" target="_blank">OpenAI Platform Docs</a></li>
+<li><a href="https://modelcontextprotocol.io/" target="_blank">Model Context Protocol</a></li>
+</ul></div>
+</div>
+</section>
+
+<section>
+<h2>11. Progress Dashboard</h2>
+<div class="card">
+<p><strong>Overall progress</strong> — checked items across this page:</p>
+<div class="progress"><div class="bar" id="progressBar"></div></div>
+<p id="progressText" class="small">0% complete</p>
+<ul class="check">
+<li><label><input type="checkbox" data-save> I can explain every technology on my resume, including Laravel and the Python AI system.</label></li>
+<li><label><input type="checkbox" data-save> One repository holds the product, the architecture README, and the trade-off notes.</label></li>
+<li><label><input type="checkbox" data-save> Week 8 eval file exists and runs with the streaming endpoint.</label></li>
+<li><label><input type="checkbox" data-save> I can design this backend on a whiteboard, including workers, tenancy and failure.</label></li>
+<li><label><input type="checkbox" data-save> I can design the RAG path, including bad documents and permission filters.</label></li>
+<li><label><input type="checkbox" data-save> I have a 100-question eval suite and can quote what it showed.</label></li>
+<li><label><input type="checkbox" data-save> I started applications at the Week 24 gate.</label></li>
+<li><label><input type="checkbox" data-save> I can walk through a raw tool loop, the LangGraph version, and one MCP server.</label></li>
+<li><label><input type="checkbox" data-save> I can compare prompting, RAG and one LoRA run without claiming a training career.</label></li>
+<li><label><input type="checkbox" data-save> I can explain the product in a 5-minute interview answer.</label></li>
+</ul>
+</div>
+</section>
+
+<section>
+<h2>12. Long-Term Extension: 30 LPA Toward 1 Cr+</h2>
+<div class="callout"><strong>Do not invent a new career identity when an offer lands.</strong> Extend this same path. Compensation at 1 Cr+ follows staff scope, not an extra certificate.</div>
+<div class="grid">
+<div class="card"><h3>Next technical layer</h3><p>Higher-scale distributed systems, deeper reliability, performance engineering, and AI platform architecture: routing, eval gates, and cost control across more than one feature.</p></div>
+<div class="card"><h3>Ownership</h3><p>Architecture decisions, technical leadership, mentoring, estimation, stakeholder communication and business impact. This is the gap between a strong senior package and a staff package.</p></div>
+<div class="card"><h3>Specialization</h3><p>Choose a specialty only after the Week 24 system is real: AI platforms, distributed backend, cloud architecture, or developer platforms.</p></div>
+</div>
+</section>
+
+</main>
+<footer><div class="wrap">
+<p><strong>Career Upgrade Roadmap v4.0</strong> — Backend + System Design + AI Engineering. One product. Apply at Week 24.</p>
+<p class="small">Living document. Update this same file as the career evolves. Add a technology when it helps this product or a real target role.</p>
+</div></footer>
+
+<script>
+const weeks = [
+['Python in the one repo','Syntax, data structures, functions, OOP, typing, exceptions. Map each idea to Laravel/PHP you already know.','Create the document-assistant repo and a tested package layout. No second project.'],
+['Professional Python tooling','pytest, pyproject, modules, logging, configuration, error handling.','Add a tested text-file inspector that the later ingestion worker can call.'],
+['FastAPI + API design','Routes, Pydantic, HTTP, REST, standard errors, OpenAPI, dependency injection, pagination.','Versioned documents API with validation and a written error format.'],
+['Auth and tenancy','JWT or session auth, RBAC, organizations, users, tenant checks on every query.','Multi-tenant access on the same API. A user in org A cannot read org B.'],
+['PostgreSQL + SQLAlchemy','Modeling, sessions, transactions, pooling, Alembic migrations.','Milestone schema: orgs, users, roles, documents, audit. Migrations run cleanly.'],
+['SQL deep dive','Joins, CTEs, window functions, indexes, EXPLAIN ANALYZE, tenant-scoped queries.','Optimize 5 slow queries on this schema and commit the before/after plans.'],
+['Async Python','asyncio, timeouts, cancellation, retries, non-blocking HTTP.','Async outbound client used by the API, with tests for timeout and retry.'],
+['First LLM endpoint + starter evals','Tokens, model choice, streaming, structured output, timeouts, usage log.','Streaming assistant on this API, plus a 20-question eval file that runs in CI.'],
+['Redis','Cache-aside, TTL, invalidation, per-tenant rate limits, idempotency keys.','Cache and rate limiter on the API. Write down before/after latency.'],
+['Background workers','Queue, retries, backoff, dead-letter path, idempotent jobs, graceful shutdown.','Document job worker on Redis or SQS. Duplicate delivery does not double-write.'],
+['Testing + contracts','Unit, integration, fixtures, test database, API contracts.','CI-ready test suite for auth, tenancy, and the worker. Failures are reproducible.'],
+['Docker','Images, layers, Compose, networks, volumes, health checks, non-root user, secrets.','One Compose command runs API, PostgreSQL, Redis, and the worker.'],
+['CI/CD','Pull requests, lint, test, image build, secrets, migration safety.','Every pull request runs tests and builds an image. Eval file is part of the pipeline.'],
+['Linux, HTTP, and observability','Processes, logs, Nginx, TLS, request IDs, latency and error signals, a short runbook.','API behind Nginx with HTTPS. One broken request is traced from access log to application log.'],
+['System design of this service','Requirements, capacity, cache, queue, database, failure, cost. Two extra paper designs this week still count.','A written design of the assistant you have built: QPS, storage, and what breaks first.'],
+['AWS deploy','IAM least privilege, S3 for files, RDS, SQS, CloudWatch, secrets, a cost note. ECS/Fargate or a small EC2 service.','Milestone: the same repo deployed. Architecture note in the README. Interviews can start warming up; the apply gate is still Week 24.'],
+['Document parsing','PDF and text extraction, tables, metadata, cleaning, OCR awareness, bad and huge files.','Ingestion accepts real PDFs, stores originals, and records failed files without blocking the API.'],
+['Embeddings + pgvector','Embeddings, similarity, indexing, metadata filters, top-k, chunk size.','Semantic search over this product\'s documents. Tenant filter is in the query, not only in the prompt.'],
+['RAG + citations + eval growth','Retrieve, build context, generate, cite, refuse when support is missing. Grow the Week 8 eval set.','Document Q&A with sources. Eval file now scores retrieval, not only chat behavior.'],
+['Hybrid search and reranking','Lexical + vector retrieval, rerank, query rewriting. Measure on the eval set.','Before/after scores in the README. Keep the change that moved the number.'],
+['RAG security','Permission-aware retrieval, indirect prompt injection, untrusted chunk text, output checks.','A user cannot retrieve another tenant\'s chunks. A hostile document cannot override tool policy.'],
+['Eval suite to 100','Slices by intent, groundedness, relevance, human review of a sample, CI regression.','100-question suite with expected behavior. A bad prompt change fails the check.'],
+['AI observability and cost','Tokens, cost, latency, retrieval scores, prompt version, tenant, request ID.','Dashboard or structured log you can use to answer: what did this request cost, and which chunks came back?'],
+['Apply gate','Resume, five-minute story, one failure story, mock system-design of this product.','Start applications this week. Agents are not required. Kafka and Kubernetes stay off the resume.'],
+['Raw agent loop','Tool schemas, validation, timeouts, two or three tools, visible state. No framework yet.','Assistant calls controlled tools. You can draw the loop from memory.'],
+['LangGraph','The same workflow as an explicit state machine. Compare it with the raw loop.','LangGraph version in the same repo. README says what the framework hid and what it clarified.'],
+['Agent safety','Allowlists, human approval for sensitive actions, quotas, audit log.','A sensitive tool does not run until a human approves. Rejections are audited.'],
+['One MCP server','MCP concepts, then a small server that exposes tenant-scoped document search.','The assistant calls your MCP server. The tool cannot see another tenant.'],
+['Agent traces','Step-level traces, tool errors, retries, token cost per run. Langfuse or equivalent fields.','One failed agent run is debuggable from a single trace.'],
+['LoRA/PEFT comparison','One small adapter on a narrow task. Compare prompting, RAG, and the adapter on the same questions.','A short note: data used, what improved, cost, and why RAG stays the default. Stop there.'],
+['Routing, cache, and quotas','Fallback model, timeouts, queue long work off the web process, prompt or semantic cache, tenant quotas.','A cost review of the product: expensive path, cheap path, and the limit that protects you.'],
+['Capstone hardening','Threat model, load and cost notes, README, resume, 5-minute story, mock interview.','The repo is the portfolio. Keep interviewing. Optional Kafka, Kubernetes, and deeper performance start only if roles ask.']
+];
+
+const list=document.getElementById("weekList");
+weeks.forEach((w,i)=>{
+ const n=i+1;
+ const el=document.createElement("details");
+ el.className = n===24 ? "week gate" : "week";
+ const badge = n===24 ? "Apply this week" : (n===8 || n===16 || n===32 ? "Milestone" : "Same repo");
+ el.innerHTML=`<summary><div class="whead"><span class="wn">WEEK ${n}</span><span>${w[0]}</span><span class="badge${n===24?" amber":""}">${badge}</span></div></summary>
+ <div class="detail"><h4>Learn</h4><p>${w[1]}</p><div class="callout green"><strong>Weekly deliverable:</strong> ${w[2]}</div>
+ <ul class="check">
+ <li><label><input type="checkbox" data-save> Concept notes completed</label></li>
+ <li><label><input type="checkbox" data-save> Code written in the one repo, without blindly copying</label></li>
+ <li><label><input type="checkbox" data-save> Change committed to Git with a trade-off note if the choice mattered</label></li>
+ <li><label><input type="checkbox" data-save> I can explain the main trade-offs aloud</label></li>
+ </ul>
+ <p class="small">Parallel: DSA on the schedule for this phase, one system-design pass, README updated.</p></div>`;
+ list.appendChild(el);
+});
+
+function initChecks(){
+ const checks=[...document.querySelectorAll("input[data-save]")];
+ checks.forEach((c,i)=>{
+   const key="career-roadmap-v4-check-"+i;
+   c.checked=localStorage.getItem(key)==="1";
+   c.addEventListener("change",()=>{localStorage.setItem(key,c.checked?"1":"0");updateProgress()});
+ });
+ updateProgress();
+}
+function updateProgress(){
+ const checks=[...document.querySelectorAll("input[data-save]")];
+ const done=checks.filter(x=>x.checked).length;
+ const pct=checks.length?Math.round(done/checks.length*100):0;
+ document.getElementById("progressBar").style.width=pct+"%";
+ document.getElementById("progressText").textContent=`${pct}% complete — ${done}/${checks.length} checklist items`;
+}
+initChecks();
+</script>
+</body>
+</html>
