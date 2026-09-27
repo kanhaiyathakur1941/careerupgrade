@@ -2,58 +2,111 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
 <meta name="description" content="Living Career Upgrade Roadmap v4: one-product Backend + System Design + AI Engineering path, 32 weeks to a job-ready RAG system, then agents.">
 <title>Career Upgrade Roadmap v4 — Backend + System Design + AI Engineering</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 :root{
- --bg:#08111f;--panel:#0f1b2d;--panel2:#14243a;--panel3:#0b1627;--text:#e8eef8;
- --muted:#9fb0c8;--line:#263853;--cyan:#67e8f9;--violet:#a78bfa;--green:#4ade80;
- --amber:#fbbf24;--red:#fb7185;--shadow:0 15px 40px rgba(0,0,0,.28)
+ --bg:#ffffff;--surface:#fafaf9;--text:#1b1b18;--muted:#706f6c;--line:#e3e3e0;
+ --red:#f53003;--red-soft:#fff1f0;--green:#0f7b3a;--green-soft:#f3faf5;
+ --amber:#b45309;--amber-soft:#fffbeb;--violet:#6d28d9;--shadow:0 1px 2px rgba(27,27,24,.04)
 }
-*{box-sizing:border-box}html{scroll-behavior:smooth}
-body{margin:0;background:linear-gradient(180deg,#060d18,#08111f 35%,#0a1424);color:var(--text);
-font:15px/1.65 Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-a{color:var(--cyan)} a:hover{text-decoration:none}
-.wrap{max-width:1240px;margin:auto;padding:22px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--text);overflow-x:clip;
+font:16px/1.7 "Instrument Sans",ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+-webkit-font-smoothing:antialiased}
+img,svg,pre,table{max-width:100%}
+a{color:var(--red);text-underline-offset:3px} a:hover{text-decoration-thickness:2px}
+.wrap{width:100%;max-width:1080px;min-width:0;margin:auto;padding:24px 28px}
+main{width:100%;max-width:100%;min-width:0}
 header{border-bottom:1px solid var(--line);background:
-radial-gradient(circle at 75% 0,rgba(103,232,249,.12),transparent 30%),
-radial-gradient(circle at 20% 0,rgba(167,139,250,.13),transparent 32%)}
-.hero{padding:48px 0 35px}.eyebrow{display:inline-block;border:1px solid #2b4963;background:#0c1b2d;
-color:var(--cyan);padding:6px 11px;border-radius:999px;font-size:12px;font-weight:800;letter-spacing:.06em}
-h1{font-size:clamp(34px,6vw,64px);line-height:1.03;margin:15px 0}
-h2{font-size:29px;margin:48px 0 15px}h3{font-size:20px;margin:10px 0}
-.lead{max-width:920px;color:var(--muted);font-size:18px}
-.notice,.callout{border:1px solid var(--line);border-left:4px solid var(--cyan);background:linear-gradient(135deg,#102238,#0e192c);
-padding:17px 19px;border-radius:12px;margin:18px 0}
-.callout.green{border-left-color:var(--green)}.callout.amber{border-left-color:var(--amber)}.callout.red{border-left-color:var(--red)}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:15px}
-.card{background:rgba(15,27,45,.92);border:1px solid var(--line);border-radius:14px;padding:19px;box-shadow:var(--shadow)}
-.kpi{font-size:30px;font-weight:850}.muted{color:var(--muted)}
-.badge{font-size:11px;padding:3px 7px;border-radius:5px;background:#12263b;color:var(--cyan);border:1px solid #23445d}
-.badge.green{color:var(--green);border-color:#14532d}.badge.amber{color:var(--amber);border-color:#78350f}
-details{background:rgba(15,27,45,.9);border:1px solid var(--line);border-radius:12px;margin:9px 0;overflow:hidden}
-summary{cursor:pointer;padding:15px 17px;font-weight:800;background:#111f33;list-style:none}
+linear-gradient(180deg,#fff8f6 0%,#ffffff 70%)}
+.hero{padding:56px 0 40px}
+.eyebrow{display:inline-block;border:1px solid #f6c7be;background:var(--red-soft);
+color:var(--red);padding:5px 12px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.05em}
+h1{font-size:clamp(32px,4.4vw,48px);line-height:1.12;letter-spacing:-.03em;margin:16px 0 12px;font-weight:700}
+h2{font-size:clamp(24px,3vw,30px);line-height:1.25;letter-spacing:-.02em;margin:56px 0 14px;padding-bottom:10px;border-bottom:1px solid var(--line);font-weight:700}
+h3{font-size:18px;margin:8px 0 6px;letter-spacing:-.01em}
+.lead{max-width:760px;color:#3f3f3c;font-size:18px;line-height:1.65}
+.notice,.callout{border:1px solid var(--line);border-left:4px solid var(--red);background:var(--surface);
+padding:16px 18px;border-radius:8px;margin:18px 0;color:#3f3f3c}
+.callout.green{border-left-color:var(--green);background:var(--green-soft)}
+.callout.amber{border-left-color:#d97706;background:var(--amber-soft)}
+.callout.red{border-left-color:var(--red);background:var(--red-soft)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:18px 20px;box-shadow:var(--shadow)}
+.kpi{font-size:30px;font-weight:700}.muted{color:var(--muted)}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.03em;padding:3px 8px;border-radius:999px;background:var(--red-soft);color:var(--red);border:1px solid #f6c7be;white-space:nowrap}
+.badge.green{color:var(--green);background:var(--green-soft);border-color:#c7ebd4}
+.badge.amber{color:var(--amber);background:var(--amber-soft);border-color:#f3dfb0}
+details{background:#fff;border:1px solid var(--line);border-radius:10px;margin:10px 0;overflow:hidden}
+summary{cursor:pointer;display:flex;align-items:flex-start;gap:2px;padding:14px 16px;font-weight:600;background:var(--surface);list-style:none;line-height:1.45}
+.whead{flex:1;min-width:0}
 summary::-webkit-details-marker{display:none}
-summary:before{content:"＋";color:var(--cyan);display:inline-block;width:25px}
-details[open] summary:before{content:"−"}
-.detail{padding:16px 19px;border-top:1px solid var(--line)}
-.detail h4{margin:16px 0 6px;color:var(--cyan)}ul{margin-top:7px;padding-left:22px}
-li{margin:5px 0}code{background:#07101c;border:1px solid #1d2e45;border-radius:5px;padding:1px 5px;color:#bae6fd}
-table{width:100%;border-collapse:collapse;background:#0d192b;border:1px solid var(--line);border-radius:10px;overflow:hidden}
-th,td{padding:11px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{background:#13243b;color:var(--cyan)}
-.week{border-left:3px solid var(--violet)}.week .whead{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-.week .wn{font-weight:900;color:var(--violet);font-size:13px}.week.gate{border-left-color:var(--amber)}
-.project{border-left:3px solid var(--green);background:#0c1d1b}
-.check{list-style:none;padding-left:0}.check li{margin:7px 0}.check input{accent-color:var(--green);margin-right:9px;transform:scale(1.08)}
-pre{overflow:auto;background:#060c15;border:1px solid var(--line);padding:14px;border-radius:9px}
-.toc{position:sticky;top:0;z-index:5;background:rgba(6,13,24,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.toc .wrap{display:flex;gap:10px;overflow:auto;white-space:nowrap;padding-top:10px;padding-bottom:10px}
-.toc a{font-size:13px;color:var(--muted);padding:6px 9px;border-radius:7px}.toc a:hover{background:#122239;color:var(--text)}
-.progress{height:10px;background:#0a1422;border:1px solid var(--line);border-radius:99px;overflow:hidden}.bar{height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--violet));transition:.2s}
-.small{font-size:12px;color:var(--muted)}
-footer{border-top:1px solid var(--line);margin-top:55px;padding:30px 0;color:var(--muted)}
-@media(max-width:650px){.wrap{padding:15px}.hero{padding:32px 0}h2{font-size:25px}.lead{font-size:16px}table{font-size:13px}}
+summary:before{content:"+";color:var(--red);display:inline-block;width:22px;font-weight:700}
+details[open] summary{border-bottom:1px solid var(--line)}
+details[open] summary:before{content:"–"}
+summary:hover{background:#f3f3f1}
+.detail{padding:8px 18px 16px}
+.detail h4{margin:16px 0 6px;color:#1b1b18;font-size:15px}
+ul{margin-top:7px;padding-left:22px}
+li{margin:5px 0}
+code{background:var(--red-soft);border-radius:5px;padding:1px 6px;color:#c2410c;font-size:.92em}
+.card.table-scroll{padding:0;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{width:100%;min-width:640px;border-collapse:collapse;background:#fff}
+th,td{padding:12px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+tr:last-child td{border-bottom:0}
+th{background:var(--surface);color:#1b1b18;font-size:13px;letter-spacing:.02em}
+.week{border-left:3px solid var(--red)}
+.week .whead{display:flex;gap:8px 12px;align-items:center;flex-wrap:wrap}
+.week .wn{font-weight:700;color:var(--red);font-size:12px;letter-spacing:.04em}
+.week .wtitle{flex:1 1 180px;min-width:0}
+.week.gate{border-left-color:#d97706}
+.project{border-left:3px solid var(--green);background:var(--green-soft)}
+.check{list-style:none;padding-left:0}
+.check li{margin:10px 0}
+.check label{display:flex;gap:10px;align-items:flex-start}
+.check input{accent-color:var(--red);width:18px;height:18px;margin-top:3px;flex:0 0 auto}
+pre{overflow:auto;background:var(--surface);border:1px solid var(--line);padding:14px;border-radius:8px;color:var(--text)}
+.toc{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.toc-bar{display:none}
+.menu-btn{appearance:none;border:1px solid var(--line);background:#fff;color:var(--text);border-radius:8px;padding:8px 12px;font:600 14px/1 "Instrument Sans",sans-serif;cursor:pointer}
+.menu-btn:hover{border-color:#c8c8c4}
+.toc-links{display:flex;flex-wrap:wrap;gap:4px;padding-top:8px;padding-bottom:8px}
+.toc a{font-size:14px;font-weight:500;color:var(--muted);text-decoration:none;padding:8px 10px;border-radius:8px}
+.toc a:hover,.toc a.active{background:var(--red-soft);color:var(--red)}
+.progress{height:8px;background:#f3f3f1;border-radius:99px;overflow:hidden}
+.bar{height:100%;width:0;background:var(--red);transition:width .2s}
+.small{font-size:13px;color:var(--muted)}
+footer{border-top:1px solid var(--line);margin-top:64px;padding:28px 0 40px;background:var(--surface);color:var(--muted)}
+@media(max-width:760px){
+ body{display:flex;flex-direction:column}
+ header{order:1}
+ .toc{order:0}
+ main{order:2}
+ footer{order:3}
+ html{scroll-padding-top:64px}
+ .wrap{padding:16px 16px calc(16px + env(safe-area-inset-bottom))}
+ .hero{padding:28px 0 22px}
+ h2{margin-top:40px}
+ .lead{font-size:16px}
+ .card,.notice,.callout{padding:14px}
+ .detail{padding:4px 14px 14px}
+ summary{padding:13px 12px}
+ .toc-bar{display:flex;align-items:center;justify-content:space-between;padding-top:10px;padding-bottom:10px}
+ .brand{font-weight:700;color:var(--text);text-decoration:none;font-size:15px}
+ .toc-links{display:none;flex-direction:column;flex-wrap:nowrap;align-items:stretch;white-space:normal;gap:0;width:100%;padding-top:0;padding-bottom:8px;max-height:min(70vh,520px);overflow:auto}
+ .toc.open .toc-links{display:flex}
+ .toc-links a{display:block;width:100%;padding:12px 8px;border-top:1px solid var(--line);border-radius:0}
+ .week .whead{align-items:flex-start}
+ table{font-size:14px}
+ th,td{padding:10px 12px}
+}
 </style>
 </head>
 <body>
@@ -65,7 +118,12 @@ footer{border-top:1px solid var(--line);margin-top:55px;padding:30px 0;color:var
 <div class="callout amber"><strong>Salary realism:</strong> 30+ LPA is a realistic target in about 6–9 months if you already have several years of production backend work, can whiteboard a scalable service, and can defend one deployed AI system (retrieval quality, cost, failure, security). Product companies and AI startups pay this band; many services roles do not. 1 Cr+ requires staff scope: ownership, technical leadership, and business impact over more years. The roadmap builds the technical base. It does not print a compensation number.</div>
 </div></header>
 
-<nav class="toc"><div class="wrap">
+<nav class="toc" id="toc">
+<div class="toc-bar wrap">
+<a class="brand" href="#top">Career Upgrade</a>
+<button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="tocLinks">Sections</button>
+</div>
+<div class="wrap toc-links" id="tocLinks">
 <a href="#rules">Rules</a><a href="#v4delta">Added / not added</a><a href="#learn">How to learn</a><a href="#stack">Final Stack</a><a href="#tech">Tech Details</a><a href="#foundations">Foundations</a><a href="#career">Career Track</a><a href="#weeks">32 Weeks</a><a href="#projects">One Product</a><a href="#interview">Interview</a><a href="#optional">After Week 32</a><a href="#gaps">Gap Check</a><a href="#refs">References</a>
 </div></nav>
 
@@ -142,7 +200,7 @@ footer{border-top:1px solid var(--line);margin-top:55px;padding:30px 0;color:var
 
 <section id="stack">
 <h2>1. Final Career Stack</h2>
-<div class="card">
+<div class="card table-scroll">
 <table><tr><th>Layer</th><th>Primary</th><th>Depth</th></tr>
 <tr><td>Languages</td><td>Python for new work; existing PHP/Laravel + JavaScript as proof</td><td>Python professional; keep Laravel explainable</td></tr>
 <tr><td>Backend</td><td>FastAPI, Pydantic, SQLAlchemy</td><td>Production API engineering</td></tr>
@@ -398,7 +456,7 @@ footer{border-top:1px solid var(--line);margin-top:55px;padding:30px 0;color:var
 
 <section id="gaps">
 <h2>9. V4 Cross-Check</h2>
-<div class="card">
+<div class="card table-scroll">
 <table>
 <tr><th>Topic</th><th>Where it lives</th><th>Why it matters</th></tr>
 <tr><td>Compressed Python for experienced backend developers</td><td>Weeks 1–2</td><td>Saves the early calendar for APIs, data, and a real LLM feature.</td></tr>
@@ -525,7 +583,7 @@ weeks.forEach((w,i)=>{
  const el=document.createElement("details");
  el.className = n===24 ? "week gate" : "week";
  const badge = n===24 ? "Apply this week" : (n===8 || n===16 || n===32 ? "Milestone" : "Same repo");
- el.innerHTML=`<summary><div class="whead"><span class="wn">WEEK ${n}</span><span>${w[0]}</span><span class="badge${n===24?" amber":""}">${badge}</span></div></summary>
+ el.innerHTML=`<summary><div class="whead"><span class="wn">WEEK ${n}</span><span class="wtitle">${w[0]}</span><span class="badge${n===24?" amber":""}">${badge}</span></div></summary>
  <div class="detail"><h4>Learn</h4><p>${w[1]}</p><div class="callout green"><strong>Weekly deliverable:</strong> ${w[2]}</div>
  <ul class="check">
  <li><label><input type="checkbox" data-save> Concept notes completed</label></li>
@@ -554,6 +612,32 @@ function updateProgress(){
  document.getElementById("progressText").textContent=`${pct}% complete — ${done}/${checks.length} checklist items`;
 }
 initChecks();
+
+const toc=document.getElementById("toc");
+const menuBtn=document.getElementById("menuBtn");
+menuBtn.addEventListener("click",()=>{
+ const open=toc.classList.toggle("open");
+ menuBtn.setAttribute("aria-expanded",open?"true":"false");
+ menuBtn.textContent=open?"Close":"Sections";
+});
+document.getElementById("tocLinks").addEventListener("click",e=>{
+ if(e.target.closest("a")){
+  toc.classList.remove("open");
+  menuBtn.setAttribute("aria-expanded","false");
+  menuBtn.textContent="Sections";
+ }
+});
+const tocLinks=[...document.querySelectorAll("#tocLinks a")];
+const sections=tocLinks.map(a=>document.querySelector(a.getAttribute("href"))).filter(Boolean);
+if("IntersectionObserver" in window){
+ const seen=new Map();
+ const io=new IntersectionObserver(entries=>{
+  entries.forEach(en=>seen.set(en.target,en.isIntersecting));
+  const current=sections.find(s=>seen.get(s));
+  tocLinks.forEach(a=>a.classList.toggle("active",current&&a.getAttribute("href")==="#"+current.id));
+ },{rootMargin:"-30% 0px -60% 0px",threshold:0});
+ sections.forEach(s=>io.observe(s));
+}
 </script>
 </body>
 </html>
